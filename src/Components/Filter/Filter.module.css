@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.input {
+  display: block;
+  text-align: center;
+  margin-bottom: 20px;
+  width: 100%;
+  border: 1px solid rgba(53, 53, 53, 0.2);
+  border-radius: 4px;
+  cursor: pointer;
+  line-height: 2;
+  border-color: rgb(6, 6, 44);
+  transition: all var(--main-transition);
+  outline: none;
+}
+.label {
+  width: 300px;
+  margin-right: 20px;
+  align-items: center;
+  font-size: 25px;
+  line-height: 1.77;
+  font-weight: 700;
+  color: rgb(3, 3, 71);
+}
+.input:focus {
+  border-color: #2521f3;
+}
