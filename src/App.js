@@ -1,12 +1,13 @@
-import { Component, Suspense, lazy } from 'react';
+import { useEffect, Suspense, lazy } from 'react';
 import './App.css';
 // import styles from "./Routes/Route.module.css";
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 // import HomePage from './Components/AppBar/HomePage';
-import { connect } from 'react-redux';
+// eslint-disable-next-line no-unused-vars
+import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from './Redux/Auth/auth_operation';
-import { getLoading } from './Redux/Phonebook/phonebook-selectors';
+// import { getLoading } from './Redux/Phonebook/phonebook-selectors';
 import { Switch } from 'react-router-dom';
 
 import PrivateRoute from './PrivateRoute';
@@ -27,15 +28,17 @@ const Register = lazy(() =>
     './Components/Registration/Registration' /* webpackChunkName: "Registration" */
   ),
 );
-class App extends Component {
-  // function App ()
-  componentDidMount() {
-    this.props.onGetCurrentUser();
-  }
-  render() {
-    return (
+const App = () => {
+  const dispatch = useDispatch();
+  // const isLoading = useSelector(state => getLoading(state));
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
+
+  return (
+    <div>
       <div>
-        {this.props.isLoading && <LinearProgress color="secondary" />}
         <AppBar />
 
         <Suspense
@@ -72,17 +75,8 @@ class App extends Component {
           </Switch>
         </Suspense>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-const mapStateToProps = state => ({
-  isLoading: getLoading(state),
-});
-
-const mapDispatchToProps = dispatch => ({
-  onGetCurrentUser: () => dispatch(getUser()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
-// export default App;
+export default App;
