@@ -15,7 +15,6 @@ const ContactList = () => {
         {contacts.map(({ name, id, number }) => {
           return (
             <li className={styles.contact_item} key={id}>
-              {' '}
               <span className={styles.contact_item_name}>{name}:</span>
               <span className={styles.contact_item_tel}>{number}</span>{' '}
               <button

@@ -17,7 +17,7 @@ const Filter = () => {
           type="text"
           value={value}
           onChange={onChange}
-        />{' '}
+        />
       </label>
     </div>
   );
